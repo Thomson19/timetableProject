@@ -1,0 +1,11 @@
+<div class="play-container">
+  <h3>Plan studentów</h3>
+  <mat-form-field>
+    <mat-label>Grupa</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let group of groups" [value]="group.name">
+        {{group.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
