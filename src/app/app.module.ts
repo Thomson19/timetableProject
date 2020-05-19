@@ -10,12 +10,20 @@ import { StudentsTimetableComponent } from './components/students-timetable/stud
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+import { LecturersTimetableComponent } from './components/lecturers-timetable/lecturers-timetable.component';
+import { RoomAvailabilityComponent } from './components/room-availability/room-availability.component';
+import { SuggestChangeComponent } from './components/suggest-change/suggest-change.component';
+import { SubscribeChangeComponent } from './components/subscribe-change/subscribe-change.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    StudentsTimetableComponent
+    StudentsTimetableComponent,
+    LecturersTimetableComponent,
+    RoomAvailabilityComponent,
+    SuggestChangeComponent,
+    SubscribeChangeComponent
   ],
   imports: [
     BrowserModule,

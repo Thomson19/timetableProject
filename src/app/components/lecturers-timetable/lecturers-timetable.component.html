@@ -1,10 +1,10 @@
-<div class="play-container">
-  <h3>Plan studentów</h3>
+<div class="play-container" xmlns:color="http://www.w3.org/1999/xhtml">
+  <h3>Plan prowadzących</h3>
   <mat-form-field>
-    <mat-label>Grupa</mat-label>
+    <mat-label>Prowadzący</mat-label>
     <mat-select>
-      <mat-option *ngFor="let group of groups" [value]="group.name">
-        {{group.name}}
+      <mat-option *ngFor="let lecturer of lecturers" [value]="lecturer.name">
+        {{lecturer.name}}
       </mat-option>
     </mat-select>
   </mat-form-field>
