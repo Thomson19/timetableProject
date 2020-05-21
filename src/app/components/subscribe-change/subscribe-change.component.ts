@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./subscribe-change.component.scss']
 })
 export class SubscribeChangeComponent implements OnInit {
+  subscribeChangeForm;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  update() {
+    console.log('Subscribe change form on update');
+  }
 }

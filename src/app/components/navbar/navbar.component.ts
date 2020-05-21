@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthenticationService} from '../../services/authentication.service';
+import {User} from '../../models/User';
 
 @Component({
   selector: 'app-navbar',
@@ -9,9 +11,16 @@ export class NavbarComponent implements OnInit {
 
   public isMenuCollapsed = true;
 
-  constructor() { }
+  currentUser: User;
 
-  ngOnInit(): void {
+  constructor(private authenticationService: AuthenticationService) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
+  ngOnInit(): void { }
+
+  logout() {
+    this.authenticationService.logout();
+    window.location.reload();
+  }
 }

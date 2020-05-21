@@ -3,7 +3,7 @@
     Zgłoś zmianę
   </h3>
 
-  <form>
+  <form [formGroup]="suggestChangeForm" (ngSubmit)="update()">
     <div class="form-group">
       <label for="groupNameInput">Nazwa grupy</label>
       <input type="text" class="form-control" id="groupNameInput">

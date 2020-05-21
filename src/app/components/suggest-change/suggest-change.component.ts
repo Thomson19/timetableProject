@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-suggest-change',
@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./suggest-change.component.scss']
 })
 export class SuggestChangeComponent implements OnInit {
+  suggestChangeForm;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  update() {
+    console.log('suggest change form on update');
+  }
 }

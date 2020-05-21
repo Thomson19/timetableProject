@@ -5,14 +5,18 @@ import {LecturersTimetableComponent} from './components/lecturers-timetable/lect
 import {RoomAvailabilityComponent} from './components/room-availability/room-availability.component';
 import {SuggestChangeComponent} from './components/suggest-change/suggest-change.component';
 import {SubscribeChangeComponent} from './components/subscribe-change/subscribe-change.component';
+import {LoginComponent} from './components/login/login.component';
+import {AuthGuard} from './helpers/AuthGuard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'studentsTimetable', pathMatch: 'full'},
-  {path: 'studentsTimetable', component: StudentsTimetableComponent},
-  {path: 'lecturersTimetable', component: LecturersTimetableComponent},
-  {path: 'roomsAvailability', component: RoomAvailabilityComponent},
-  {path: 'suggestChange', component: SuggestChangeComponent},
-  {path: 'subscribeChange', component: SubscribeChangeComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'studentsTimetable', component: StudentsTimetableComponent, canActivate: [AuthGuard]},
+  {path: 'lecturersTimetable', component: LecturersTimetableComponent, canActivate: [AuthGuard]},
+  {path: 'roomsAvailability', component: RoomAvailabilityComponent, canActivate: [AuthGuard]},
+  {path: 'suggestChange', component: SuggestChangeComponent, canActivate: [AuthGuard]},
+  {path: 'subscribeChange', component: SubscribeChangeComponent, canActivate: [AuthGuard]},
+  { path: '**', redirectTo: '' }
 ];
 
 

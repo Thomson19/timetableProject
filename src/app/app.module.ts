@@ -14,6 +14,12 @@ import { LecturersTimetableComponent } from './components/lecturers-timetable/le
 import { RoomAvailabilityComponent } from './components/room-availability/room-availability.component';
 import { SuggestChangeComponent } from './components/suggest-change/suggest-change.component';
 import { SubscribeChangeComponent } from './components/subscribe-change/subscribe-change.component';
+import { LoginComponent } from './components/login/login.component';
+import {HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
+import {JwtInterceptor} from './helpers/JwtInterceptor';
+import {ErrorInterceptor} from './helpers/ErrorInterceptor';
+import {HttpClientModule} from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +29,8 @@ import { SubscribeChangeComponent } from './components/subscribe-change/subscrib
     LecturersTimetableComponent,
     RoomAvailabilityComponent,
     SuggestChangeComponent,
-    SubscribeChangeComponent
+    SubscribeChangeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +39,14 @@ import { SubscribeChangeComponent } from './components/subscribe-change/subscrib
     FontAwesomeModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

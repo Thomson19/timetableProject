@@ -7,7 +7,7 @@
     W przypadku wprowadzenia zmian otrzymasz powiadomienie na podanego poniżej maila.
   </h6>
 
-  <form>
+  <form [formGroup]="subscribeChangeForm" (ngSubmit)="update()">
     <select class="browser-default custom-select mb-2">
       <option selected>Plan dla studentów</option>
       <option value="1">Plan dla prowadzących</option>
