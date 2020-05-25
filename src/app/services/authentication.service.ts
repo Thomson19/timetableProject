@@ -23,7 +23,7 @@ export class AuthenticationService {
 
   // TODO: paste url to login endpoint
   login(email: string, password: string) {
-    return this.http.post<any>('http://localhost:5000/api/auth', {email, password})
+    return this.http.post<any>('http://46.41.149.141/timetable/auth', {email, password})
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         if (user && user.token) {

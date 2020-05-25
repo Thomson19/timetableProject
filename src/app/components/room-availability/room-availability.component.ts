@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-
-interface Room {
-  name: string;
-}
+import {TimetableService} from '../../services/timetable.service';
+import {Classroom} from '../../models/Classroom';
 
 @Component({
   selector: 'app-room-availability',
@@ -11,12 +9,15 @@ interface Room {
 })
 export class RoomAvailabilityComponent implements OnInit {
 
-  rooms: Room[] = [{name: 'CTI401'}, {name: 'CTI402'}, {name: 'CTI403'}, {name: 'CTI404'}];
+  rooms: Classroom[];
 
-  constructor() {
+  constructor(private timetableService: TimetableService) {
   }
 
   ngOnInit(): void {
+    this.timetableService.getRooms().subscribe(data => {
+      this.rooms = data;
+    });
   }
 
 }

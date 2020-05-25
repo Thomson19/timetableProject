@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-
-interface Lecturer {
-  name: string;
-}
+import {Teacher} from '../../models/Teacher';
+import {TimetableService} from '../../services/timetable.service';
 
 @Component({
   selector: 'app-lecturers-timetable',
@@ -11,12 +9,15 @@ interface Lecturer {
 })
 export class LecturersTimetableComponent implements OnInit {
 
-  lecturers: Lecturer[] = [{name: 'Jan Kowalski'}, {name: 'Adam Nowak'}, {name: 'Anna Kucharska'}, {name: 'Ewa Kowalska'}];
+  lecturers: Teacher[];
 
-  constructor() {
+  constructor(private timetableService: TimetableService) {
   }
 
   ngOnInit(): void {
+    this.timetableService.getLecturers().subscribe(data => {
+      this.lecturers = data;
+    });
   }
 
 }

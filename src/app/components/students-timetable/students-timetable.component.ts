@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-interface StudentsGroup {
-  name: string;
-}
+import {Group} from '../../models/Group';
+import {TimetableService} from '../../services/timetable.service';
 
 @Component({
   selector: 'app-students-timetable',
@@ -11,11 +9,14 @@ interface StudentsGroup {
 })
 export class StudentsTimetableComponent implements OnInit {
 
-  groups: StudentsGroup[] = [{name: 'IO-1'}, {name: 'IO-2'}, {name: 'IO-3'}, {name: 'IO-4'}];
+  groups: Group[];
 
-  constructor() { }
+  constructor(private timetableService: TimetableService) { }
 
   ngOnInit(): void {
+    this.timetableService.getGroups().subscribe(data => {
+      this.groups = data;
+    });
   }
 
 }

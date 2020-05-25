@@ -7,6 +7,8 @@ import {SuggestChangeComponent} from './components/suggest-change/suggest-change
 import {SubscribeChangeComponent} from './components/subscribe-change/subscribe-change.component';
 import {LoginComponent} from './components/login/login.component';
 import {AuthGuard} from './helpers/AuthGuard';
+import {UploadTimetableComponent} from './components/upload-timetable/upload-timetable.component';
+import {AddOptionForCategoryComponent} from './components/add-option-for-category/add-option-for-category.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'studentsTimetable', pathMatch: 'full'},
@@ -16,6 +18,8 @@ const routes: Routes = [
   {path: 'roomsAvailability', component: RoomAvailabilityComponent, canActivate: [AuthGuard]},
   {path: 'suggestChange', component: SuggestChangeComponent, canActivate: [AuthGuard]},
   {path: 'subscribeChange', component: SubscribeChangeComponent, canActivate: [AuthGuard]},
+  {path: 'uploadTimetable', component: UploadTimetableComponent},
+  {path: 'addOptionForCategory', component: AddOptionForCategoryComponent},
   { path: '**', redirectTo: '' }
 ];
 

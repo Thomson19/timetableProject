@@ -20,6 +20,8 @@ import {JwtInterceptor} from './helpers/JwtInterceptor';
 import {ErrorInterceptor} from './helpers/ErrorInterceptor';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
+import { UploadTimetableComponent } from './components/upload-timetable/upload-timetable.component';
+import { AddOptionForCategoryComponent } from './components/add-option-for-category/add-option-for-category.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     RoomAvailabilityComponent,
     SuggestChangeComponent,
     SubscribeChangeComponent,
-    LoginComponent
+    LoginComponent,
+    UploadTimetableComponent,
+    AddOptionForCategoryComponent
   ],
   imports: [
     BrowserModule,

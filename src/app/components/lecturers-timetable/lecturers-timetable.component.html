@@ -3,8 +3,8 @@
   <mat-form-field>
     <mat-label>Prowadzący</mat-label>
     <mat-select>
-      <mat-option *ngFor="let lecturer of lecturers" [value]="lecturer.name">
-        {{lecturer.name}}
+      <mat-option *ngFor="let lecturer of lecturers" [value]="lecturer.id">
+        {{lecturer.firstName}} {{lecturer.lastName}}
       </mat-option>
     </mat-select>
   </mat-form-field>
