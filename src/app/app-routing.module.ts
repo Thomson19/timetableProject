@@ -18,9 +18,9 @@ const routes: Routes = [
   {path: 'roomsAvailability', component: RoomAvailabilityComponent, canActivate: [AuthGuard]},
   {path: 'suggestChange', component: SuggestChangeComponent, canActivate: [AuthGuard]},
   {path: 'subscribeChange', component: SubscribeChangeComponent, canActivate: [AuthGuard]},
-  {path: 'uploadTimetable', component: UploadTimetableComponent},
-  {path: 'addOptionForCategory', component: AddOptionForCategoryComponent},
-  { path: '**', redirectTo: '' }
+  {path: 'uploadTimetable', component: UploadTimetableComponent, canActivate: [AuthGuard]},
+  {path: 'addOptionForCategory', component: AddOptionForCategoryComponent, canActivate: [AuthGuard]},
+  { path: '**', redirectTo: 'studentsTimetable' }
 ];
 
 

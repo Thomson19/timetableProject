@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 
 interface Category {
   name: string;
+  type: string;
 }
 
 @Component({
@@ -14,17 +15,19 @@ interface Category {
 })
 export class UploadTimetableComponent implements OnInit {
   uploadForm;
+  formValid: boolean = false;
   categories: Category[] = [
-    {name: 'Plan studentów'},
-    {name: 'Plan prowadzących'},
-    {name: 'Dostępność sal'}
+    {name: 'Plan studentów', type: 'GROUP'},
+    {name: 'Plan prowadzących', type: 'TEACHER'},
+    {name: 'Dostępność sal', type: 'CLASSROOM'}
   ];
   groups = [];
 
   constructor(private formBuilder: FormBuilder, private timetableService: TimetableService, private router: Router) {
     this.uploadForm = this.formBuilder.group({
       category: [null, [Validators.required]],
-      categoryOptions: [{value: null, disabled: true}, [Validators.required]]
+      categoryOptions: [{value: null, disabled: true}, [Validators.required]],
+      upload: [null, [Validators.required]]
     });
   }
 
@@ -53,8 +56,21 @@ export class UploadTimetableComponent implements OnInit {
     this.uploadForm.get('categoryOptions').enable();
   }
 
-  onFileChange($event: Event) {
-
+  onFileChange(event) {
+    let reader = new FileReader();
+    if(event.target.files && event.target.files.length > 0) {
+      let file = event.target.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        if (typeof reader.result === 'string') {
+          this.uploadForm.get('upload').setValue({
+            fileType: file.type,
+            value: reader.result.split(',')[1]
+          });
+        }
+      };
+    }
+    this.formValid = true;
   }
 
   onOptionAdd() {
@@ -64,7 +80,10 @@ export class UploadTimetableComponent implements OnInit {
   }
 
   onSubmit() {
-    // TODO: post request
-    console.log('upload file');
+    let content = this.uploadForm.get('upload').value;
+    let type = this.uploadForm.get('category').value.type;
+    let typeId = this.uploadForm.get('categoryOptions').value.id;
+
+    this.timetableService.uploadNewPlan(typeId, type, content).subscribe();
   }
 }

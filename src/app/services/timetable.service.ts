@@ -1,6 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +28,13 @@ export class TimetableService {
 
   getRooms(): Observable<any[]> {
     return this.http.get<any[]>(this.url + 'classRooms');
+  }
+
+  uploadNewPlan(typeId: number, type: string, content: any): Observable<any> {
+    return this.http.post<any>(this.url + 'plans', {
+      typeId: typeId,
+      type: type,
+      content: content
+    }, httpOptions);
   }
 }
