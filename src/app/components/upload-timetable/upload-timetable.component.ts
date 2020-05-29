@@ -85,5 +85,6 @@ export class UploadTimetableComponent implements OnInit {
     let typeId = this.uploadForm.get('categoryOptions').value.id;
 
     this.timetableService.uploadNewPlan(typeId, type, content).subscribe();
+    window.location.reload();
   }
 }

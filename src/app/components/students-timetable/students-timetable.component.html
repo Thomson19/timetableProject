@@ -2,12 +2,17 @@
   <h3>Plan studentów</h3>
   <mat-form-field>
     <mat-label>Grupa</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let group of groups" [value]="group.name">
+    <mat-select (selectionChange)="onSelectionChange($event.value)">
+      <mat-option *ngFor="let group of groups" [value]="group">
         {{group.name}}
       </mat-option>
     </mat-select>
   </mat-form-field>
+
+
+  <div class="image-container">
+    <img [src]="transform()" *ngIf="imageBase64">
+  </div>
 
   <div class="float-right subscribe-container">
     <a routerLink="/subscribeChange">

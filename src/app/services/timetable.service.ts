@@ -37,4 +37,8 @@ export class TimetableService {
       content: content
     }, httpOptions);
   }
+
+  getGroupImage(typeId: number): Observable<any> {
+    return this.http.get<any>(this.url+'plans/groups/'+typeId);
+  }
 }
