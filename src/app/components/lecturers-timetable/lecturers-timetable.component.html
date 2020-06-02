@@ -2,12 +2,16 @@
   <h3>Plan prowadzących</h3>
   <mat-form-field>
     <mat-label>Prowadzący</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let lecturer of lecturers" [value]="lecturer.id">
+    <mat-select (selectionChange)="onSelectionChange($event.value)">
+      <mat-option *ngFor="let lecturer of lecturers" [value]="lecturer">
         {{lecturer.firstName}} {{lecturer.lastName}}
       </mat-option>
     </mat-select>
   </mat-form-field>
+
+  <div class="image-container">
+    <img [src]="transform()" *ngIf="imageBase64">
+  </div>
 
   <div class="float-right subscribe-container">
     <a routerLink="/subscribeChange">

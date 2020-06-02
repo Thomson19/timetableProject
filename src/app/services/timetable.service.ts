@@ -41,4 +41,9 @@ export class TimetableService {
   getGroupImage(typeId: number): Observable<any> {
     return this.http.get<any>(this.url+'plans/groups/'+typeId);
   }
+
+  getLecturerImage(typeId: number): Observable<any> {
+    return this.http.get<any>(this.url+'plans/teachers/'+typeId);
+  }
+
 }
