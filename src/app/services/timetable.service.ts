@@ -46,4 +46,8 @@ export class TimetableService {
     return this.http.get<any>(this.url+'plans/teachers/'+typeId);
   }
 
+  getRoomImage(typeId: number): Observable<any> {
+    return this.http.get<any>(this.url+'plans/classRooms/'+typeId);
+  }
+
 }

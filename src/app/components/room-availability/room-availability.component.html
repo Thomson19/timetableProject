@@ -2,12 +2,16 @@
   <h3>Plan dostępności sal</h3>
   <mat-form-field>
     <mat-label>Sala</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let room of rooms" [value]="room.name">
+    <mat-select (selectionChange)="onSelectionChange($event.value)">
+      <mat-option *ngFor="let room of rooms" [value]="room">
         {{room.name}}
       </mat-option>
     </mat-select>
   </mat-form-field>
+
+  <div class="image-container">
+    <img [src]="transform()" *ngIf="imageBase64">
+  </div>
 
   <div class="float-right subscribe-container">
     <a routerLink="/subscribeChange">
