@@ -7,23 +7,28 @@
     W przypadku wprowadzenia zmian otrzymasz powiadomienie na podanego poniżej maila.
   </h6>
 
-  <form [formGroup]="subscribeChangeForm" (ngSubmit)="update()">
-    <select class="browser-default custom-select mb-2">
-      <option selected>Plan dla studentów</option>
-      <option value="1">Plan dla prowadzących</option>
-      <option value="2">Dostępność sal</option>
-    </select>
-
-    <select class="browser-default custom-select mb-2">
-      <option selected>Nr grupy/Nazwisko prowadzącego/Nr sali</option>
-      <option value="1">Test</option>
-      <option value="2">Test</option>
-    </select>
+  <form [formGroup]="subscribeChangeForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="category">Wybierz kategorię</label>
+      <select class="custom-select" id="category" formControlName="category" (change)=onCategorySelected()>
+        <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
+      </select>
+    </div>
 
     <div class="form-group">
-      <label for="subjectNameInput">Mail</label>
-      <input type="text" class="form-control" id="subjectNameInput">
+      <label for="group">Nr grupy/Nazwisko prowadzącego/Nr sali</label>
+      <select class="custom-select" id="group" formControlName="categoryOptions" (change)="onGroupChange()">
+        <option *ngFor="let group of groups" [ngValue]="group">{{group.name}}</option>
+      </select>
     </div>
-    <button type="submit" class="btn btn-primary btn-lg btn-block">Wyślij</button>
+
+    <div class="form-group">
+      <label for="mail">Email</label>
+      <input type="text" class="form-control" id="mail" formControlName="mail" required>
+      <div *ngIf="errors">
+        <p class="mat-error">Nieprawidłowy email</p>
+      </div>
+    </div>
+    <button type="submit" [disabled]="!formValid" class="btn btn-primary btn-lg btn-block">Wyślij</button>
   </form>
 </div>

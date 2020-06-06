@@ -50,4 +50,11 @@ export class TimetableService {
     return this.http.get<any>(this.url+'plans/classRooms/'+typeId);
   }
 
+  sendSuggestion(typeId: number, type: string, mail: string): Observable<any> {
+    return this.http.post<any>(this.url + 'plans', {
+      typeId: typeId,
+      type: type,
+      mail: mail
+    }, httpOptions);
+  }
 }
