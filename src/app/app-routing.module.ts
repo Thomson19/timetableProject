@@ -9,6 +9,7 @@ import {LoginComponent} from './components/login/login.component';
 import {AuthGuard} from './helpers/AuthGuard';
 import {UploadTimetableComponent} from './components/upload-timetable/upload-timetable.component';
 import {AddOptionForCategoryComponent} from './components/add-option-for-category/add-option-for-category.component';
+import {Role} from './models/Role';
 
 const routes: Routes = [
   {path: '', redirectTo: 'studentsTimetable', pathMatch: 'full'},
@@ -18,8 +19,8 @@ const routes: Routes = [
   {path: 'roomsAvailability', component: RoomAvailabilityComponent, canActivate: [AuthGuard]},
   {path: 'suggestChange', component: SuggestChangeComponent, canActivate: [AuthGuard]},
   {path: 'subscribeChange', component: SubscribeChangeComponent, canActivate: [AuthGuard]},
-  {path: 'uploadTimetable', component: UploadTimetableComponent, canActivate: [AuthGuard]},
-  {path: 'addOptionForCategory', component: AddOptionForCategoryComponent, canActivate: [AuthGuard]},
+  {path: 'uploadTimetable', component: UploadTimetableComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
+  {path: 'addOptionForCategory', component: AddOptionForCategoryComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
   { path: '**', redirectTo: 'studentsTimetable' }
 ];
 
