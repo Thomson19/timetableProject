@@ -28,7 +28,6 @@ export class NavbarComponent implements OnInit {
   }
 
   get isAdmin() {
-    console.log(this.currentUser);
     return this.currentUser && this.currentUser.accountType === Role.Admin;
   }
 }
