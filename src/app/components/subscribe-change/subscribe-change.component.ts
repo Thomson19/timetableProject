@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {TimetableService} from '../../services/timetable.service';
+import {AuthenticationService} from '../../services/authentication.service';
 
 @Component({
   selector: 'app-subscribe-change',
@@ -16,13 +17,11 @@ export class SubscribeChangeComponent implements OnInit {
   ];
   groups = [];
   formValid: boolean = false;
-  errors: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private timetableService: TimetableService) {
+  constructor(private formBuilder: FormBuilder, private timetableService: TimetableService, private authService: AuthenticationService) {
     this.subscribeChangeForm = this.formBuilder.group({
       category: [null, [Validators.required]],
-      categoryOptions: [{value: null, disabled: true}, [Validators.required]],
-      mail: [{value: null, disabled: true}, [Validators.minLength(2)]]
+      categoryOptions: [{value: null, disabled: true}, [Validators.required]]
     });
   }
 
@@ -30,16 +29,12 @@ export class SubscribeChangeComponent implements OnInit {
   }
 
   onSubmit() {
-    this.errors = false;
     let type = this.subscribeChangeForm.get('category').value.type;
     let typeId = this.subscribeChangeForm.get('categoryOptions').value.id;
-    let mail: string = this.subscribeChangeForm.get('mail').value;
+    let userId = this.authService.currentUserValue.accountId;
 
-    if (mail == null || !mail.match('^[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$')) {
-      this.errors = true;
-    } else {
-      // TODO: post request to subscribe
-    }
+    this.timetableService.subscribeChange(typeId, type, userId).subscribe();
+    window.location.reload();
   }
 
   onCategorySelected() {
@@ -65,7 +60,6 @@ export class SubscribeChangeComponent implements OnInit {
   }
 
   onGroupChange() {
-    this.subscribeChangeForm.get('mail').enable();
     this.formValid = true;
   }
 }
