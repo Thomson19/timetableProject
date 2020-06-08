@@ -6,10 +6,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-option-for-category.component.scss']
 })
 export class AddOptionForCategoryComponent implements OnInit {
+  addOptionForm: any;
+  categories = [
+    {name: 'Plan studentów', type: 'GROUP'},
+    {name: 'Plan prowadzących', type: 'TEACHER'},
+    {name: 'Dostępność sal', type: 'CLASSROOM'}
+  ];
+
+  formValid: boolean = true;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onSubmit() {
+
+  }
+
+  onCategorySelected() {
+
+  }
 }

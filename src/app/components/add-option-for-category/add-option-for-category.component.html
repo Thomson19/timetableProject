@@ -1,1 +1,17 @@
-<p>Tutaj formatka do dodawania grupy/prowadzącego/sali</p>
+<div class="play-container">
+  <h3>Dodaj nową opcję</h3>
+  <form [formGroup]="addOptionForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="category">Wybierz kategorię</label>
+      <select class="custom-select" id="category" formControlName="category" (change)=onCategorySelected()>
+        <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="categoryName">Podaj nazwę</label>
+      <input id="categoryName" type="text" class="form-control">
+    </div>
+
+    <button type="submit" [disabled]="!formValid" class="btn btn-primary btn-lg btn-block mt-5">Wyślij</button>
+  </form>
+</div>
