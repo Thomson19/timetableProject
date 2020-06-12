@@ -20,6 +20,7 @@ export class StudentsTimetableComponent implements OnInit {
     this.timetableService.getGroups().subscribe(data => {
       this.groups = data;
     });
+
   }
 
   transform() {
@@ -30,8 +31,10 @@ export class StudentsTimetableComponent implements OnInit {
     this.timetableService.getGroupImage(group.id).subscribe(image => {
       if(image == null) {
         console.log('not found');
+        this.imageBase64 = this.timetableService.get404Image();
+      } else {
+        this.imageBase64 = 'data:image/png;base64, '+image.content.value;
       }
-      this.imageBase64 = 'data:image/png;base64, '+image.content.value;
     })
   }
 }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Teacher} from '../../models/Teacher';
 import {TimetableService} from '../../services/timetable.service';
-import {DomSanitizer} from "@angular/platform-browser";
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lecturers-timetable',
@@ -28,11 +28,13 @@ export class LecturersTimetableComponent implements OnInit {
 
   onSelectionChange(lecturer) {
     this.timetableService.getLecturerImage(lecturer.id).subscribe(image => {
-      if(image == null) {
+      if (image == null) {
         console.log('not found');
+        this.imageBase64 = this.timetableService.get404Image();
+      } else {
+        this.imageBase64 = 'data:image/png;base64, ' + image.content.value;
       }
-      this.imageBase64 = 'data:image/png;base64, '+image.content.value;
-    })
+    });
   }
 
 
