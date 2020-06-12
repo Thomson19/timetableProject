@@ -57,4 +57,23 @@ export class TimetableService {
       type: type
     }, httpOptions);
   }
+
+  addGroup(name: string): Observable<any> {
+    return this.http.post<any>(this.url + 'groups', {
+      name: name
+    }, httpOptions);
+  }
+
+  addTeacher(firstName: string, lastName: string) {
+    return this.http.post<any>(this.url + 'teachers', {
+      firstName: firstName,
+      lastName: lastName
+    }, httpOptions);
+  }
+
+  addClassRoom(name: string): Observable<any> {
+    return this.http.post<any>(this.url + 'classRooms', {
+      name: name
+    }, httpOptions);
+  }
 }
