@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {AuthenticationService} from './authentication.service';
+import {map, mergeMap, switchMap} from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,7 +17,7 @@ export class TimetableService {
 
   url = 'http://46.41.149.141/timetable/';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthenticationService) {
   }
 
   getGroups(): Observable<any[]> {
@@ -79,5 +81,18 @@ export class TimetableService {
     return this.http.post<any>(this.url + 'classRooms', {
       name: name
     }, httpOptions);
+  }
+
+  suggestChange(groupId: number, description: string) {
+    let submitterId = this.authService.currentUserValue.accountId;
+    return this.getGroupImage(groupId).pipe(
+      switchMap(data => {
+        return this.http.post<any>(this.url + 'suggestions', {
+          submitterId: submitterId,
+          planId: data.id,
+          description: description
+        }, httpOptions);
+      })
+    );
   }
 }
