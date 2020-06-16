@@ -10,6 +10,7 @@ import {AuthGuard} from './helpers/AuthGuard';
 import {UploadTimetableComponent} from './components/upload-timetable/upload-timetable.component';
 import {AddOptionForCategoryComponent} from './components/add-option-for-category/add-option-for-category.component';
 import {Role} from './models/Role';
+import {ListOfChangesComponent} from "./components/list-of-changes/list-of-changes.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'studentsTimetable', pathMatch: 'full'},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'subscribeChange', component: SubscribeChangeComponent, canActivate: [AuthGuard]},
   {path: 'uploadTimetable', component: UploadTimetableComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
   {path: 'addOptionForCategory', component: AddOptionForCategoryComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
+  {path: 'listOfChanges', component: ListOfChangesComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: 'studentsTimetable' }
 ];
 

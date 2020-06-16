@@ -1,0 +1,41 @@
+.mat-spinner {
+  position: relative;
+  margin-left: 45%;
+  margin-right: 45%;
+  margin-top: 10%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+table {
+  width: 100%;
+  margin-bottom: 30px;
+}
+.mat-header-cell {
+  text-align: center;
+}
+.mat-column-id{
+  width: 5% !important;
+}
+.mat-column-description{
+  width: 79% !important;
+}
+.mat-column-accept{
+  width: 7% !important;
+}
+.mat-column-reject{
+  width: 7% !important;
+}
+
+#reject-button, #accept-button{
+  display: block;
+  margin: auto;
+  width: 50px;
+}
+
+
+.paginatorCustom {
+  margin-top: -30px;
+}
