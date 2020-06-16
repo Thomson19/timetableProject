@@ -1,0 +1,56 @@
+<div class="play-container" xmlns:color="http://www.w3.org/1999/xhtml">
+  <h3>Lista zgłoszonych zmian</h3>
+
+  <mat-form-field [hidden]="dataSource == undefined">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)">
+  </mat-form-field>
+  <div class="mat-elevation-z8" [hidden]="dataSource == undefined">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> No.</th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- Descritpion Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Opis </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+
+      <!-- Accept button -->
+      <ng-container matColumnDef="accept">
+        <th mat-header-cell *matHeaderCellDef> Zaakceptuj </th>
+        <td mat-cell *matCellDef="let element">
+          <button id="accept-button" class="btn btn-success" (click)="acceptChange(element)">
+            <i class="fa fa-check"></i>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Reject button -->
+      <ng-container matColumnDef="reject">
+        <th mat-header-cell *matHeaderCellDef> Odrzuć </th>
+        <td mat-cell *matCellDef="let element">
+          <button id="reject-button" class="btn btn-danger" (click)="rejectChange(element)">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+    <div class="paginatorCustom">
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+
+
+  <div [hidden]="dataSource != undefined">
+    <mat-spinner></mat-spinner>
+  </div>
+
+</div>

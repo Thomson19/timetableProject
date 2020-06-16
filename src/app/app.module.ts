@@ -22,6 +22,12 @@ import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import { UploadTimetableComponent } from './components/upload-timetable/upload-timetable.component';
 import { AddOptionForCategoryComponent } from './components/add-option-for-category/add-option-for-category.component';
+import { ListOfChangesComponent } from './components/list-of-changes/list-of-changes.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
+import {MatInputModule} from "@angular/material/input";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -34,7 +40,8 @@ import { AddOptionForCategoryComponent } from './components/add-option-for-categ
     SubscribeChangeComponent,
     LoginComponent,
     UploadTimetableComponent,
-    AddOptionForCategoryComponent
+    AddOptionForCategoryComponent,
+    ListOfChangesComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +52,12 @@ import { AddOptionForCategoryComponent } from './components/add-option-for-categ
     MatFormFieldModule,
     MatSelectModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
+    MatInputModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

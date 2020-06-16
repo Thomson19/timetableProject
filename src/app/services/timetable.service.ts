@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthenticationService} from './authentication.service';
 import {map, mergeMap, switchMap} from 'rxjs/operators';
+import {Change} from "../models/Change";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -30,6 +31,10 @@ export class TimetableService {
 
   getRooms(): Observable<any[]> {
     return this.http.get<any[]>(this.url + 'classRooms');
+  }
+
+  getListOfChanges(): Observable<any> {
+    return this.http.get<any[]>(this.url +  'suggestions');
   }
 
   uploadNewPlan(typeId: number, type: string, content: any): Observable<any> {
@@ -94,5 +99,16 @@ export class TimetableService {
         }, httpOptions);
       })
     );
+  }
+
+  acceptChange(change: Change) {
+    return this.http.put<any>(this.url + 'suggestions/' + change.id, {
+      id: change.id,
+      suggestionState: "Accepted"
+    }, httpOptions);
+  }
+
+  deleteChange(change: Change) {
+    return this.http.delete<any>(this.url + 'suggestions/' + change.id);
   }
 }
