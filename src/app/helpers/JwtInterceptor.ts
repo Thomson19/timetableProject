@@ -10,8 +10,7 @@ export class JwtInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const currentUser = this.authenticationService.currentUserValue;
     const isLoggedIn = currentUser && currentUser.token;
-    // TODO: add url to endpoint
-    const isApiUrl = request.url.startsWith('http://46.41.149.141/timetable/auth/');
+    const isApiUrl = request.url.startsWith('http://46.41.149.141/timetable/');
     if (isLoggedIn && isApiUrl) {
       request = request.clone({
         setHeaders: {
